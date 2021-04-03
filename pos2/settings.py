@@ -1,5 +1,5 @@
 import os
-
+from django.contrib.messages import constants as messages
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,7 +44,7 @@ ROOT_URLCONF = 'pos2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +110,8 @@ USE_TZ = True
 #staticを取り扱う際のURL
 STATIC_URL = '/static/'
 #静的コンテンツの読み取り場所を指定(BASE_DIRとstaticを同一パスとして扱う)
-STATICFILES_DIR=(
+#複数形にし忘れるとstaticが全て適用されなくなる。
+STATICFILES_DIRS=(
     os.path.join(BASE_DIR,'static'),
     )
 
@@ -118,6 +119,15 @@ STATICFILES_DIR=(
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 #mediaを取り扱う際のurl
 MEDIA_URL='/media/'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'alert alert-danger',
+    messages.WARNING: 'alert alert-warning',
+    messages.SUCCESS: 'alert alert-success',
+    messages.INFO: 'alert alert-info',
+}
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 
