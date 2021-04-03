@@ -130,7 +130,7 @@ MESSAGE_TAGS = {
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
-
+AUTH_USER_MODEL='accounts.CustomUser'
 
 
 
