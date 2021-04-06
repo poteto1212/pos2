@@ -10,8 +10,8 @@ class CustomUser(AbstractUser):#abstrctouserではユーザー情報のみ。Cus
     photo=models.ImageField(verbose_name='写真',blank=True,null=True,upload_to='images/')
     #photoカラムからサムネ画像生成。画素やサイズといった各種設定を自動で行ってくれる関数
     thumunail=ImageSpecField(source='photo',processors=[ResizeToFill(256,256)],#画像のサイズ指定
-    format='JPEG',option{'quality':60})#画質指定
+    format='JPEG',options={'quality':60})#画質指定
     
     class Mata:#付加情報
-        verbose_name_plual='CustomUser'
+        verbose_name_plural='CustomUser'
 # Create your models here.
