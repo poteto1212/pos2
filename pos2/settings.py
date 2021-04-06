@@ -27,6 +27,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'timeline.apps.TimelineConfig',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +136,29 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 AUTH_USER_MODEL='accounts.CustomUser'
+
+#メールアドレスでのユーザー認証システム
+SITE_ID=1
+AUTHENTICATION_BACKENDS=(
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
+#メールアドレスとパスワードでの認証　アカウント認証時の自動承認
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True
+LOGIN_REDIRECT_URL = 'timeline:index'#ログイン時のリダイレクトURL設定
+ACCOUNT_LOGOUT_REDIRECT_URL='account_login'#ログアウト時のリダイレクトURL設定
+ACCOUNT_EMAIL_SUBJECT_PREFIX=''#メールタイトルの接頭辞を指定
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+DEFAULT_FROM_EMAIL='admin@example.com'
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'#コンソールでの試験的なメールを確認にする
+
+
+
+
+
 
 
 

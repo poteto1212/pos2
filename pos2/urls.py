@@ -6,6 +6,7 @@ from .import settings
 urlpatterns = [
     path('',include('timeline.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/',include('allauth.urls')),
 ]
 
 #include→引数のurl.pyに処理を任せる
