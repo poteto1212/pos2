@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/confirm-email/',RedirectView.as_view(pattern_name="timeline:index")),
     re_path('accounts/cofirm-email/[^/]+/',RedirectView.as_view(pattern_name="timeline:index"),kwargs=None),
     path('accounts/',include('allauth.urls')),
+    path('accounts/',include('accounts.urls')),
 ]
 
 #include→引数のurl.pyに処理を任せる

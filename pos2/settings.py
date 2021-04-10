@@ -150,10 +150,12 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_REQUIRED = True
 LOGIN_REDIRECT_URL = 'timeline:index'#ログイン時のリダイレクトURL設定
 ACCOUNT_LOGOUT_REDIRECT_URL='account_login'#ログアウト時のリダイレクトURL設定
+ACCOUNT_LOGOUT_GET=True
 ACCOUNT_EMAIL_SUBJECT_PREFIX=''#メールタイトルの接頭辞を指定
 ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 DEFAULT_FROM_EMAIL='admin@example.com'
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'#コンソールでの試験的なメールを確認にする
+
 
 
 
