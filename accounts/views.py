@@ -10,10 +10,10 @@ class ProfileEdit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     model=CustomUser
     form_class=ProfileForm
     template_name='account/edit.html'
-    sucess_url="/accounts/edit/"#更新したら自己遷移
+    sucess_url="/accounts/edit/"#更新したら自己遷移(form_classからのデータを持ってる)
     sucess_message='プロフィールを更新しました。'
     
-    def __init__(self):
-        return self.request.user #request.user→現在ログインしているユーザーの情報(def__nit__(self)で自動取得)
+    def get_object(self):
+        return self.request.user#request.user→現在ログインしているユーザーの情報(def__nit__(self)で自動取得)
 
 edit=ProfileEdit.as_view()
