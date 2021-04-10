@@ -17,3 +17,9 @@ class ProfileEdit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
         return self.request.user#request.user→現在ログインしているユーザーの情報(def__nit__(self)で自動取得)
 
 edit=ProfileEdit.as_view()
+
+class ProfileDetail(LoginRequiredMixin,generic.DetailView):
+    model=CustomUser
+    template_name='account/detail.html'
+    
+detail=ProfileDetail.as_view()
