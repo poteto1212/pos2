@@ -10,7 +10,7 @@ class Post(models.Model):
     photo=models.ImageField(verbose_name='写真',blank=True,null=True,upload_to='images/')
     #photoカラムから投稿画像を生成する
     post_photo=ImageSpecField(source='photo',processors=[ResizeToFit(1080,1080)],format='JPEG',options={'quality':60})
-    created_at=models.DateTimeField(auto_now_add=True,blank=True).
+    created_at=models.DateTimeField(auto_now_add=True,blank=True)
     
     
     #「ほめる」をしてくれたユーザー情報の取得する関数(配列として返す)
