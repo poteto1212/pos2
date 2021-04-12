@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views import generic
 from .forms import PostForm
 from .models import Post
@@ -20,7 +19,7 @@ index=IndexView.as_view()
 
 class CreateView(LoginRequiredMixin,generic.CreateView):
     form_class=PostForm
-    sucess_url=reverse_lazy('timeline:index')#urls.pyのindex変数→index.htmlの表示が可能
+    success_url=reverse_lazy('timeline:index')#urls.pyのindex変数→index.htmlの表示が可能
     
     #form_vaild関数に外部キー指定機能及びメッセージ表示機能を追加する。
     def form_vaild(self,form):#form_vaild()postされた際、validationがOKだった場合に呼び出される関数。保存処理や、後処理、リダイレクト先を設定するために利用します
