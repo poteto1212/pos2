@@ -24,4 +24,52 @@
       </div>
     </div>
   </div>
+  {% for post in object_list %}
+  <div class="card mb-5 text-left">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-1">
+        <a href="{% url 'accounts:detail' post.author.id %}"><img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
+      </div>
+      <div class="col-10 ml-3">
+        <a href="{% url 'accounts:detail' post.author.id %}" class="text-secondary">{{ post.author }}</a><br>
+        <small class="text-muted">{{ post.created_at | date:"n月j日 H時i分" }}</small>
+      </div>
+    </div>
+    <p class="card-text mt-2">{{ post.text | linebreaks }}</p>
+  </div>
+  {% if post.post_photo %}
+  <img class="card-img-bottom" src="{{ post.post_photo.url }}" alt="Card image cap">
+  {% endif %}
+</div>
+  {% endfor %}
+  <nav>
+  <ul class="pagination justify-content-center">
+  {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">«</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled"><span class="page-link">
+      «</span>
+    </li>
+  {% endif %}
+  {% for i in page_obj.paginator.page_range %}
+  {% if page_obj.number == i %}
+    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
+  {% else %}
+    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">»</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">»</span>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
 {% endblock %}

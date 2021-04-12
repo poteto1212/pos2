@@ -10,6 +10,11 @@ from django.urls import reverse_lazy
 
 class IndexView(generic.TemplateView):
     template_name="index.html"
+    paginate_by=10 #10ページ表示する。
+    def get_queryset(self):
+        posts=Post.objects.orders_by('-created_at')
+        return posts
+
 
 index=IndexView.as_view()
 
