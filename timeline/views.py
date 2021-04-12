@@ -24,7 +24,7 @@ class CreateView(LoginRequiredMixin,generic.CreateView):
     
     #form_vaild関数に外部キー指定機能及びメッセージ表示機能を追加する。
     def form_vaild(self,form):#form_vaild()postされた際、validationがOKだった場合に呼び出される関数。保存処理や、後処理、リダイレクト先を設定するために利用します
-        form.instance.auther_id=self.request.user_id#form指定カラムの外部キー(ユーザー情報)=rwquestのid情報
+        form.instance.author_id=self.request.user.id#form指定カラムの外部キー(ユーザー情報)=rwquestのid情報
         messages.sucess(self.request,'投稿が完了しました')
         return super(CreateView,self).form_vaild(form)
         
