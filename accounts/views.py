@@ -9,7 +9,7 @@ class ProfileEdit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     model=CustomUser
     form_class=ProfileForm
     template_name='account/edit.html'
-    sucess_url="/accounts/edit/"#更新したら自己遷移(form_classからのデータを持ってる)
+    sucess_url='/accounts/edit/'#更新したら自己遷移(form_classからのデータを持ってる)
     sucess_message='プロフィールを更新しました。'
     
     def get_object(self):
